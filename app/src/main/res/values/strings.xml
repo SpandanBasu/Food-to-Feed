@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Food to Feed</string>
     <string name="title_activity_splash_screen">Food to Feed</string>
+    <string name="Google_MAP_API">AIzaSyCcpQg-ViT4tK7RQQHOqP3ok2b4lJ7H4Cw</string>
 </resources>

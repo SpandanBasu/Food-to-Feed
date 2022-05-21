@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/donation_orders"
+        android:title="Food Donation Orders"
+        app:showAsAction="never"/>
+    <item android:id="@+id/hunger_list"
+        android:title="Hunger Hotspots List"
+        app:showAsAction="never"/>
+</menu>

@@ -2,12 +2,16 @@ package com.basu.foodtofeed;
 
 import static android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +33,7 @@ import java.util.Objects;
 public class SplashScreen extends AppCompatActivity {
 
     public static final int SPLASH_DISPLAY_LENGTH = 2000;
+    private static final int REQUEST_CODE = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,24 @@ public class SplashScreen extends AppCompatActivity {
 
         ImageView splash = (ImageView) findViewById(R.id.img_splash);
         splash.startAnimation(animation);
+
+        if((ContextCompat.checkSelfPermission(SplashScreen.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED))
+        {
+            if(ActivityCompat.shouldShowRequestPermissionRationale(SplashScreen.this, Manifest.permission.ACCESS_FINE_LOCATION))
+            {
+
+                ActivityCompat.requestPermissions(SplashScreen.this, new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                },REQUEST_CODE);
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(SplashScreen.this, new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                },REQUEST_CODE);
+            }
+        }
 
         new Handler().postDelayed(new Runnable(){
             @Override
