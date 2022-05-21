@@ -2,11 +2,8 @@ package com.basu.foodtofeed;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,38 +15,35 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHolder> {
-    private ArrayList<DonateForm> donatorList;
+public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHolder> {
+    private ArrayList<HotSpotForm> hotspotList;
     private Context context;
     BottomSheetDialog bottomSheetDialog;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("DonateRequests");
-    public DonationAdapter(ArrayList<DonateForm> donatorList, Context context) {
-        this.donatorList = donatorList;
+
+    public HotspotAdapter(ArrayList<HotSpotForm> hotspotList, Context context) {
+        this.hotspotList = hotspotList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public DonationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.donation_list_item,parent,false);
-        return new ViewHolder(view);
+    public HotspotAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.hotspot_list_item,parent,false);
+        return new HotspotAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DonationAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.donatorName.setText(donatorList.get(position).getName());
-        holder.donatorAddress.setText(donatorList.get(position).getAddress());
-        String time= donatorList.get(position).getTime().substring(0,5);
-        holder.orderTime.setText(time);
+    public void onBindViewHolder(@NonNull HotspotAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.hotspotAddress.setText(hotspotList.get(position).getAddress());
+        holder.hotspotAmount.setText(hotspotList.get(position).getFoodAmount());
         holder.menuMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,16 +60,16 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
                         alertDialogue.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                DonateForm donateItem= donatorList.get(position);
+                                HotSpotForm hotspotItem= hotspotList.get(position);
                                 try{
-                                    donatorList.remove(position);
+                                    hotspotList.remove(position);
                                     notifyItemRemoved(position);
-                                    notifyItemRangeChanged(position,donatorList.size());
+                                    notifyItemRangeChanged(position,hotspotList.size());
                                     Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
                                 }catch(Exception e){
                                     Log.e("Error Exception","!!!!!!!!!!!");
                                 }
-                                myRef.child(donateItem.getNumber()).child(donateItem.getTime()).removeValue();
+                                myRef.child(hotspotItem.getAddress()).child(hotspotItem.getTime()).removeValue();
                             }
                         });
                         alertDialogue.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -93,13 +87,11 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
                     public void onClick(View view) {
                         AlertDialog.Builder alertDialogue= new AlertDialog.Builder(context);
                         alertDialogue.setTitle("Details");
-                        String one ="Donator Name: "+donatorList.get(position).getName();
-                        String two="Address: "+donatorList.get(position).getAddress();
-                        String three="Mobile Number: "+donatorList.get(position).getNumber();
-                        String four="Time of Order: "+donatorList.get(position).getTime();
-                        String five="Amount(of person): "+donatorList.get(position).getFoodAmount();
+                        String one="Address: "+hotspotList.get(position).getAddress();
+                        String two="Time of Marking: "+hotspotList.get(position).getTime();
+                        String three="Amount(of person): "+hotspotList.get(position).getFoodAmount();
 
-                        alertDialogue.setMessage(one+"\n\n"+two+"\n\n"+three+"\n\n"+four+"\n\n"+five);
+                        alertDialogue.setMessage(one+"\n\n"+two+"\n\n"+three);
                         alertDialogue.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -112,13 +104,14 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
                 });
                 bottomSheetDialog.setContentView(bsView);
                 bottomSheetDialog.show();
+                
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return donatorList.size();
+        return hotspotList.size();
     }
     @Override
     public long getItemId(int position) {
@@ -135,13 +128,12 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView menuMore;
-        TextView donatorName,donatorAddress,orderTime;
+        TextView hotspotAddress,hotspotAmount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             menuMore=(ImageView)itemView.findViewById(R.id.more_option);
-            donatorName=(TextView)itemView.findViewById(R.id.donator_name);
-            donatorAddress=(TextView)itemView.findViewById(R.id.donator_address);
-            orderTime=(TextView)itemView.findViewById(R.id.order_time);
+            hotspotAddress=(TextView)itemView.findViewById(R.id.address_hotspot);
+            hotspotAmount=(TextView)itemView.findViewById(R.id.hotspot_amount);
         }
     }
 }
