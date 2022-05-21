@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "34996869333",
+    "project_id": "food-to-feed",
+    "storage_bucket": "food-to-feed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34996869333:android:f5d11fedcfadd7ab7c2a5c",
+        "android_client_info": {
+          "package_name": "com.basu.foodtofeed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34996869333-c1d0ved6mv5e7ljg4j9qvd9kepdv0mpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6U6iKZPW05sGDC7OZ1dFKwRcE3i9SQOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34996869333-c1d0ved6mv5e7ljg4j9qvd9kepdv0mpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
