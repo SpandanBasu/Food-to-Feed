@@ -5,11 +5,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HealthyNutritionActivity">
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollFeed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/centre_background_green"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Healthy Nutrition"
-        android:textSize="32sp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginHorizontal="16dp"
+            android:id="@+id/personalDetailsCard"
+            style="@style/centreLocatorCardDesign"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="10dp">
+
+            <LinearLayout
+                android:visibility="visible"
+                android:id="@+id/form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:focusableInTouchMode="false"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+
+
+
+                <EditText
+                    android:id="@+id/txtWeight"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Weight ( in Kg )"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+                <EditText
+                    android:id="@+id/txtHeight"
+                    style="@style/modifiedEditText"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Height ( in cm )"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+                <EditText
+                    android:id="@+id/txtGender"
+                    style="@style/modifiedEditText"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Gender ( M or F )"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="1"
+                    android:maxLines="1" />
+
+                <Button
+                    android:id="@+id/btnCalc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_back_circular_yellow"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Calculate"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </RelativeLayout>

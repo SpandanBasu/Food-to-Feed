@@ -9,7 +9,7 @@
         android:id="@+id/scrollFeed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/centre_background"
+        android:background="@drawable/centre_background_red"
         android:focusableInTouchMode="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -72,5 +72,7 @@
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>
