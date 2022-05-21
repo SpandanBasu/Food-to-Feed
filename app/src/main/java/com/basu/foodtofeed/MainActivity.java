@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static DatabaseReference myRef = database.getReference("DonateRequests");
+    public static DatabaseReference myRefHotspots = database.getReference("HungerHotspots");
     public static ArrayList<DonateForm> donatorList=fetchDonations();
+    public static ArrayList<HotSpotForm> hotspotList=fetchHotspots();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,19 +80,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private static ArrayList<DonateForm> fetchDonations() {
+    public static ArrayList<DonateForm> fetchDonations() {
         ArrayList<DonateForm> arr = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                arr.clear();
                 for(DataSnapshot snap:snapshot.getChildren()){
                     for(DataSnapshot snap2:snap.getChildren()){
-                        String name= snap2.child("name").getValue(String.class);
-                        String address= snap2.child("address").getValue(String.class);
-                        String amount= snap2.child("foodAmount").getValue(String.class);
-                        String number=snap2.child("number").getValue(String.class);
-                        String time=snap2.child("time").getValue(String.class);
-                        DonateForm order= new DonateForm(name,number,address,amount,time);
+                        DonateForm order= snap2.getValue(DonateForm.class);
+                        //Toast.makeText(DonationOrdersListActivity.this, ""+name+" "+number, Toast.LENGTH_SHORT).show();
+                        arr.add(order);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //Do nothing
+            }
+        });
+        //Toast.makeText(this, ""+arr, Toast.LENGTH_SHORT).show();
+        return arr;
+    }
+
+    public static ArrayList<HotSpotForm> fetchHotspots() {
+        ArrayList<HotSpotForm> arr = new ArrayList<>();
+        myRefHotspots.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                arr.clear();
+                for(DataSnapshot snap:snapshot.getChildren()){
+                    for(DataSnapshot snap2:snap.getChildren()){
+                        HotSpotForm order= snap2.getValue(HotSpotForm.class);
                         //Toast.makeText(DonationOrdersListActivity.this, ""+name+" "+number, Toast.LENGTH_SHORT).show();
                         arr.add(order);
                     }

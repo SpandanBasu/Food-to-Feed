@@ -42,12 +42,12 @@ public class DonationOrdersListActivity extends AppCompatActivity {
     }
 
     private void loadDonations() {
-
         //donatorList=fetchDonations();
         //Toast.makeText(this, ""+donatorList.get(0).getName()+"\n"+donatorList.get(1).getName(), Toast.LENGTH_SHORT).show();
         donationAdapter=new DonationAdapter(donatorList,this);
         recyclerView.setAdapter(donationAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        recyclerView.setItemAnimator(null);
         donationAdapter.notifyDataSetChanged();
 
     }
