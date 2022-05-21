@@ -48,7 +48,11 @@ public class DonateFoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate_food);
         Button btnSend = findViewById(R.id.btnSend);
-
+        nameEdit=findViewById(R.id.txtName);
+        addressEdit=findViewById(R.id.txtAddress);
+        landmarkEdit=findViewById(R.id.txtLandmark);
+        mobEdit=findViewById(R.id.txtMob);
+        amountEdit=findViewById(R.id.txtFeed);
         if(checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)== PackageManager.PERMISSION_DENIED){
             Toast.makeText(this, "Please allow Storage permission", Toast.LENGTH_SHORT).show();
             if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION)== PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
@@ -67,21 +71,28 @@ public class DonateFoodActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(fieldsNotEmpty()){
 
-                nameEdit=findViewById(R.id.txtName);
-                addressEdit=findViewById(R.id.txtAddress);
-                landmarkEdit=findViewById(R.id.txtLandmark);
-                mobEdit=findViewById(R.id.txtMob);
-                amountEdit=findViewById(R.id.txtFeed);
-                name=nameEdit.getText().toString().trim();
-                address=addressEdit.getText().toString().trim();
-                landmark=landmarkEdit.getText().toString().trim();
-                mobile=mobEdit.getText().toString().trim();
-                amount=amountEdit.getText().toString().trim();
-                sendRequest(name,address,landmark,mobile,amount);
-                clearEditField();
+                    name=nameEdit.getText().toString().trim();
+                    address=addressEdit.getText().toString().trim();
+                    landmark=landmarkEdit.getText().toString().trim();
+                    mobile=mobEdit.getText().toString().trim();
+                    amount=amountEdit.getText().toString().trim();
+                    sendRequest(name,address,landmark,mobile,amount);
+                    clearEditField();
+                }else{
+                    Toast.makeText(DonateFoodActivity.this, "Empty fields are not Allowed", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    private boolean fieldsNotEmpty() {
+        if(nameEdit.getText().toString().equals("") || addressEdit.getText().toString().equals("") || amountEdit.getText().toString().equals("") ||
+                mobEdit.getText().toString().equals("")){
+            return false;
+        }
+        return true;
     }
 
     private void clearEditField() {
@@ -95,7 +106,7 @@ public class DonateFoodActivity extends AppCompatActivity {
     private void sendRequest(String name, String address, String landmark, String mobile, String amount) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss_dd-MM-yyyy", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
-        DonateForm donation= new DonateForm(name, mobile, address+" Landmark: "+landmark, Integer.parseInt(amount),currentDateandTime);
+        DonateForm donation= new DonateForm(name, mobile, address+" Landmark: "+landmark, amount,currentDateandTime);
         myRef.child(mobile).child(currentDateandTime).setValue(donation).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

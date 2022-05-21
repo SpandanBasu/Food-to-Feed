@@ -4,18 +4,26 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/FoodtoFeed/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2145" />
+        <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/bottomsheet_bg.xml" value="0.2265" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/button_back_circular_yellow.xml" value="0.2265" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/centre_background.xml" value="0.2265" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/centre_button.xml" value="0.2265" />
+        <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/ic_delete.xml" value="0.2265" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/ic_food.xml" value="0.2265" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/ic_location.xml" value="0.2265" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/ic_love.xml" value="0.2265" />
+        <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/ic_properties.xml" value="0.2265" />
+        <entry key="..\:/FoodtoFeed/app/src/main/res/drawable/more_icon_dark.xml" value="0.2265" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/layout-v23/activity_main.xml" value="0.28940217391304346" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/layout/activity_donate_food.xml" value="0.35052083333333334" />
+        <entry key="..\:/FoodtoFeed/app/src/main/res/layout/activity_donation_orders_list.xml" value="0.35052083333333334" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/layout/activity_healthy_nutrition.xml" value="0.35052083333333334" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/layout/activity_hunger_hotspot.xml" value="0.35052083333333334" />
+        <entry key="..\:/FoodtoFeed/app/src/main/res/layout/activity_hunger_hotspots_list.xml" value="0.33645833333333336" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/layout/activity_splash_screen.xml" value="0.358695652173913" />
+        <entry key="..\:/FoodtoFeed/app/src/main/res/layout/donation_list_item.xml" value="0.33" />
+        <entry key="..\:/FoodtoFeed/app/src/main/res/layout/food_item_bs_layout.xml" value="0.35052083333333334" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/menu/main_activity_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/FoodtoFeed/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2145" />
       </map>

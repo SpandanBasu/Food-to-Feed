@@ -4,15 +4,18 @@ public class DonateForm {
     private String name;
     private String number;
     private String address;
-    private int foodAmount;
+    private String foodAmount;
     private String time;
 
-    public DonateForm(String name, String number, String address, int foodAmount, String time) {
+    public DonateForm(String name, String number, String address, String foodAmount, String time) {
         this.name = name;
         this.number = number;
         this.address = address;
         this.foodAmount = foodAmount;
         this.time=time;
+    }
+
+    public DonateForm() {
     }
 
     public String getTime() {
@@ -47,11 +50,11 @@ public class DonateForm {
         this.address = address;
     }
 
-    public int getFoodAmount() {
+    public String getFoodAmount() {
         return foodAmount;
     }
 
-    public void setFoodAmount(int foodAmount) {
+    public void setFoodAmount(String foodAmount) {
         this.foodAmount = foodAmount;
     }
 }
