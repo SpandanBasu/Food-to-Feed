@@ -15,9 +15,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -26,7 +30,7 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
     private Context context;
     BottomSheetDialog bottomSheetDialog;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("DonateRequests");
+    DatabaseReference myRef2 = database.getReference("HungerHotspots");
 
     public HotspotAdapter(ArrayList<HotSpotForm> hotspotList, Context context) {
         this.hotspotList = hotspotList;
@@ -69,7 +73,15 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
                                 }catch(Exception e){
                                     Log.e("Error Exception","!!!!!!!!!!!");
                                 }
-                                myRef.child(hotspotItem.getAddress()).child(hotspotItem.getTime()).removeValue();
+                                String arrT[]=hotspotItem.getAddress().split("Landmark");
+                                String key=arrT[0].trim();
+                                Toast.makeText(context, key, Toast.LENGTH_SHORT).show();
+                                myRef2.child(key).child(hotspotItem.getTime()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(context, "Deleted Success", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
                         });
                         alertDialogue.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

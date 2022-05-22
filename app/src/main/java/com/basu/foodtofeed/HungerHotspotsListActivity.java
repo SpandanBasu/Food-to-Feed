@@ -1,6 +1,5 @@
 package com.basu.foodtofeed;
 
-import static com.basu.foodtofeed.MainActivity.donatorList;
 import static com.basu.foodtofeed.MainActivity.hotspotList;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,8 +34,6 @@ public class HungerHotspotsListActivity extends AppCompatActivity {
         });
     }
     private void loadHotspots() {
-        //donatorList=fetchDonations();
-        //Toast.makeText(this, ""+donatorList.get(0).getName()+"\n"+donatorList.get(1).getName(), Toast.LENGTH_SHORT).show();
         hotspotAdapter=new HotspotAdapter(hotspotList,this);
         recyclerView.setAdapter(hotspotAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
