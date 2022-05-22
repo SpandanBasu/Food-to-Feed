@@ -75,7 +75,6 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
                                 }
                                 String arrT[]=hotspotItem.getAddress().split("Landmark");
                                 String key=arrT[0].trim();
-                                Toast.makeText(context, key, Toast.LENGTH_SHORT).show();
                                 myRef2.child(key).child(hotspotItem.getTime()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
