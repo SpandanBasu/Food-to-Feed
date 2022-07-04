@@ -1,0 +1,27 @@
+
+Food to Feed
+Topic: Zero Hunger 
+this is an Android Application made for a 3 day Hackathon challenging to fight world hunger
+
+Problem Understanding: 
+•	To end global hunger
+•	Fight against Child Malnutrition
+•	Promote Healthy food habit
+
+Proposed Solution: 
+•	An Android App to
+  o	Collect Extra food
+  o	Reserve storage
+  o	Identify the hunger zones
+  o	Distribution of food
+  o	Healthy food habbit
+    •	Diet and nutrition chart according to Height weight
+    •	Protiens, Calciums,vitamins, and Water consumption
+
+Tech Stack: Android App
+•	Android Studio
+•	Java
+•	Location(Pickup, drop)
+•	Google maps API
+
+
